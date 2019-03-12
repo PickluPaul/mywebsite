@@ -395,12 +395,12 @@ to pursue engineering.<br>
                 </div>
                 <div class="col-md-6">
                   <div class="card-body">
-                    <form action="mailto:picklupaul93@gmail.com" method="POST">
+                    <form action="{{ url_for('submit') }}" method="POST">
                       <div class="p pb-3"><strong><center>Get in touch </center></strong></div>
                       <div class="row mb-3">
                         <div class="col">
                           <div class="input-group"><span class="input-group-addon"><i class="fa fa-user-circle"></i></span>
-                            <input class="form-control" type="text" name="name" placeholder="Name" required="required"/>
+                            <input class="form-control" type="text" name="Name" placeholder="Name" id="Name" required="required"/>
                           </div>
                         </div>
                       </div>
