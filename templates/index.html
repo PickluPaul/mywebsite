@@ -13,12 +13,143 @@
     <link href="../static/css/bootstrap.min.css" rel="stylesheet">
     <link href="../static/styles/main.css" rel="stylesheet">
   </head>
+  <script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function() {
+    var parent = document.querySelector('.splitview'),
+        topPanel = parent.querySelector('.top'),
+        handle = parent.querySelector('.handle'),
+        skewHack = 0,
+        delta = 0;
+
+    // If the parent has .skewed class, set the skewHack var.
+    if (parent.className.indexOf('skewed') != -1) {
+        skewHack = 1000;
+    }
+
+    parent.addEventListener('mousemove', function(event) {
+        // Get the delta between the mouse position and center point.
+        delta = (event.clientX - window.innerWidth / 2) * 0.5;
+
+        // Move the handle.
+        handle.style.left = event.clientX + delta + 'px';
+
+        // Adjust the top panel width.
+        topPanel.style.width = event.clientX + skewHack + delta + 'px';
+    });
+});
+</script>
+<style type="text/css">
+  /* Reset. */
+
+
+/* Panels. */
+.splitview {
+    position: relative;
+    width: 100%;
+    min-height: 45vw;
+    overflow: hidden;
+}
+
+.panel {
+    position: absolute;
+    width: 100vw;
+    min-height: 45vw;
+    overflow: hidden;
+}
+
+    .panel .content {
+        position: absolute;
+        width: 100vw;
+        min-height: 45vw;
+        color: #FFF;
+    }
+
+    .panel .description {
+        width: 25%;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        text-align: center;
+    }
+
+    .panel img {
+        box-shadow: 0 0 20px 20px rgba(0, 0, 0, 0.15);
+        width: 35%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+
+.bottom {
+    background-color: rgb(44, 44, 44);
+    z-index: 1;
+}
+
+    .bottom .description {
+        right: 5%;
+    }
+
+.top {
+    background-color: rgb(77, 69, 173);
+    z-index: 2;
+    width: 50vw;
+
+    /*-webkit-clip-path: polygon(60% 0, 100% 0, 100% 100%, 40% 100%);
+    clip-path: polygon(60% 0, 100% 0, 100% 100%, 40% 100%);*/
+}
+
+    .top .description {
+        left: 5%;
+    }
+
+/* Handle. */
+.handle {
+    height: 100%;
+    position: absolute;
+    display: block;
+    background-color: grey;
+    width: 5px;
+    top: 0;
+    left: 50%;
+    z-index: 3;
+}
+
+/* Skewed. */
+.skewed .handle {
+    top: 50%;
+    transform: rotate(30deg) translateY(-50%);
+    height: 200%;
+    -webkit-transform-origin: top;
+    -moz-transform-origin: top;
+    transform-origin: top;
+}
+
+.skewed .top {
+    transform: skew(-30deg);
+    margin-left: -1000px;
+    width: calc(50vw + 1000px);
+}
+
+.skewed .top .content {
+    transform: skew(30deg);
+    margin-left: 1000px;
+}
+
+/* Responsive. */
+@media (max-width: 900px) {
+    body {
+        font-size: 75%;
+    }
+}
+</style>
   <body id="top">
     <header>
       <div class="profile-page sidebar-collapse">
         <nav class="navbar navbar-expand-lg fixed-top navbar-transparent bg-primary" color-on-scroll="400">
           <div class="container">
-            <div class="navbar-translate" id="greeting"><a class="navbar-brand" href="#" rel="tooltip"><i>Namaste!!!</i></a>
+            <div class="navbar-translate" id="greeting"><a class="navbar-brand" href="#" rel="tooltip"><i>{{greeting}}</i></a>
               <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-bar bar2"></span><span class="navbar-toggler-bar bar2"></span><span class="navbar-toggler-bar bar3"></span></button>
             </div>
             <div class="collapse navbar-collapse justify-content-end" id="navigation">
@@ -489,12 +620,36 @@ It was Sunday which I vividly remember. I was sitting in a restaurant, famished 
 </div>
 </div>
     </div>
-    <footer class="footer">
+
+   <footer class="footer">
       <div class="container text-center"><a class="cc-facebook btn btn-link" href="https://www.facebook.com/picklu.paul.1"><i class="fa fa-facebook fa-2x " aria-hidden="true"></i></a><a class="cc-twitter btn btn-link " href="https://twitter.com/paul_picks"><i class="fa fa-twitter fa-2x " aria-hidden="true"></i></a><a class="cc-google-plus btn btn-link" href="https://www.quora.com/profile/Picklu-Paul"><i class="fa fa-quora fa-2x" aria-hidden="true"></i></a></div>
-      <div class="h4 title text-center">Picklu Paul</div>
-      <div class="text-center text-muted">
-        <p>&copy Copyright Reserved.<br>This website is powered by AWS,Flask,Docker,Kubernetes.</p>
-      </div>
+      <div><center>Get In Touch</center></div>
+      <br><br>
+     <div class="splitview skewed">
+        <div class="panel bottom">
+            <div class="content">
+                <div class="description">
+                  <h1>Picklu Paul.</h1>
+                    <p>&copy Copyright Reserved.<br>This website is powered by AWS,Flask,Docker,Kubernetes.</p>
+                </div>
+
+                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/original-image.jpg" alt="Original">
+            </div>
+        </div>
+
+        <div class="panel top">
+            <div class="content">
+                <div class="description">
+                     <h1>Signing Off...</h1>
+                    <p>Until next time!!!</p>
+                </div>
+
+                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/duotone-image.jpg" alt="Duotone">
+            </div>
+        </div>
+
+        <div class="handle"></div>
+    </div>
     </footer>
     <script src="../static/js/core/jquery.3.2.1.min.js"></script>
     <script src="../static/js/core/popper.min.js"></script>
