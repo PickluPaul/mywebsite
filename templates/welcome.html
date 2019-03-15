@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<META HTTP-EQUIV=Refresh CONTENT="60; URL=/profile">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<title >Welcome</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+<style type="text/css">
+	@import url(https://fonts.googleapis.com/css?family=Nunito);
+
+html {
+  height: 100%;
+  overflow: hidden;
+}
+
+body { 
+  margin:0;
+  padding:0;
+	perspective: 1px;
+	transform-style: preserve-3d;
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  font-family: Nunito;
+}
+
+h1 {
+   font-size: 250%
+
+}
+
+p {
+  font-size: 140%;
+  line-height: 150%;
+  color: black;
+}
+
+.slide {
+  position: relative;
+  padding: 25vh 10%;
+  min-height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
+transform-style: inherit;
+}
+
+img {
+  position: absolute;
+  top: 50%;
+  left: 35%;
+  width: 420px;
+  height: 420px;
+  transform: translateZ(.25px) scale(.75) translateX(-94%) translateY(-100%) rotate(2deg);
+  padding: 10px;
+  border-radius: 5px;
+
+}
+
+img:last-of-type {
+  transform: translateZ(.4px) scale(.6) translateX(-104%) translateY(-40%) rotate(-5deg);
+}
+
+.slide:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+}
+
+.title {
+  width: 50%;
+  padding: 5%;
+  border-radius: 5px;
+  background: #7FFFD4;
+  opacity: .4;
+  box-shadow: 0 0 8px rgba(0, 0, 0, .7);
+}
+
+.slide:nth-child(2n) .title {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.slide:nth-child(2n+1) .title {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.slide, .slide:before {
+  background: 50% 50% / cover;  
+}
+
+.header {
+  text-align: center;
+  font-size: 175%;
+  color: #fff;
+  text-shadow: 0 2px 2px #000;
+}
+
+#title {
+  background-image: url("../static/images/main3.jpg");
+  z-index:2;
+}
+
+#title h1 {
+ transform: translateZ(.25px) scale(.75);
+ transform-origin: 50% 100%;
+
+}
+
+#slide1:before {
+  background-image: url("../static/images/test7.jpg");
+  transform: translateZ(-1px) scale(2);
+}
+
+#slide2 {
+  background-image: url("../static/images/te.png");
+  z-index:2;
+}
+
+#slide3:before {
+  background-image: url("../static/images/test7.jpg");
+  transform: translateZ(-1px) scale(2);
+}
+
+#slide4 {
+  background-image: url("../static/images/main3.jpg");
+  transform: rotate(180deg)
+}
+
+#b1 {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    height: 100px;
+    width: 150px;
+    border: 10px;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+}
+</style>
+<body>
+<div id="title" class="slide header">
+  <h1 style="color: #E0FFFF;">Welcome</h1>
+ <p style="color: white;font-size: 12px;">Scroll to have a look at my profile...</p>
+</div>
+
+<div id="slide1" class="slide">
+	
+  <img src="../static/images/moon.png" style="height: 180px;width: 180px;left: 75%;">
+  <img src="../static/images/planet1.png" style="left: 70%;"> 
+<div class="title">
+    <h1>{{welcome_msg}}</h1>
+    <p>{{city}} is a beautiful place to stay and you are certainly a lucky person </p>
+  </div>
+</div>
+
+<div id="slide2" class="slide">
+  <div class="title">
+    <h1>Weather in {{city}}</h1>
+    <p>The current temperature is {{temp}}&#8451<br>
+    	Temperature may go as high as {{max_temp}}&#8451<br>
+        Temperature may low as {{min_temp}}&#8451<br>
+        As for weather,there may be {{forcast}}
+    </p>
+  </div>
+ <img src="../static/images/galaxy.png" > 
+</div>
+
+<div id="slide3" class="slide">
+	<img src="../static/images/satellite.png"  style="height: 180px;width: 180px;left: 65%;">
+  <div class="title">
+    <h1>News Bulletin on {{city}}</h1>
+    <p>{% for headline in headlines %}
+    	{{loop.index}}{{headline}}<br>
+    	{%endfor%}
+    </p>
+    	
+  </div>
+</div>
+
+<div id="title" class="slide header" style="transform:rotate(180deg);">
+<a href="/profile" class="btn btn-outline-info" style="transform:rotate(180deg)" role="button">Proceed to Website</a>
+	
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
