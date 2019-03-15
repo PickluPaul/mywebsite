@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<META HTTP-EQUIV=Refresh CONTENT="60; URL=/profile">
+	<META HTTP-EQUIV=Refresh CONTENT="35; URL=/profile">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<title >Welcome</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -155,17 +155,17 @@ img:last-of-type {
   <img src="../static/images/planet1.png" style="left: 70%;"> 
 <div class="title">
     <h1>{{welcome_msg}}</h1>
-    <p>{{city}} is a beautiful place to stay and you are certainly a lucky person </p>
+    <p>{{city.decode('utf-8')}} is a beautiful place to stay and hopefully you are enjoying your stay at {{city.decode('utf-8')}} </p>
   </div>
 </div>
 
 <div id="slide2" class="slide">
   <div class="title">
-    <h1>Weather in {{city}}</h1>
+    <h1>Weather in {{city.decode('utf-8')}}</h1>
     <p>The current temperature is {{temp}}&#8451<br>
     	Temperature may go as high as {{max_temp}}&#8451<br>
-        Temperature may low as {{min_temp}}&#8451<br>
-        As for weather,there may be {{forcast}}
+        Temperature may go as low as {{min_temp}}&#8451<br>
+        As for weather,you can expect it to be {{forcast}}
     </p>
   </div>
  <img src="../static/images/galaxy.png" > 
@@ -174,7 +174,7 @@ img:last-of-type {
 <div id="slide3" class="slide">
 	<img src="../static/images/satellite.png"  style="height: 180px;width: 180px;left: 65%;">
   <div class="title">
-    <h1>News Bulletin on {{city}}</h1>
+    <h1>News Bulletin on {{city.decode('utf-8')}}</h1>
     <p>{% for headline in headlines %}
     	{{loop.index}}{{headline}}<br>
     	{%endfor%}
